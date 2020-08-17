@@ -83,7 +83,7 @@ export default function AccountPage() {
       {currentUser.providerId === 'google.com' && 
       <>
         <Header color='teal' sub content='Google account' />
-        <p>Please visit Facebook to update your account</p>
+        <p>Please visit Google to update your account</p>
         <Button
           icon='google'
           color='google plus'
