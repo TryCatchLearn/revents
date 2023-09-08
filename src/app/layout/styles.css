@@ -28,3 +28,9 @@ body {
 .react-datepicker-wrapper {
     width: 100%;
 }
+
+.react-calendar {
+    width: 100% !important;
+    border: none !important;
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15) !important;
+}
