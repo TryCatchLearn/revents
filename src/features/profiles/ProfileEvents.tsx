@@ -6,6 +6,7 @@ import { useFireStore } from '../../app/hooks/firestore/useFirestore';
 import { useAppSelector } from '../../app/store/store';
 import { CollectionOptions } from '../../app/hooks/firestore/types';
 import { actions } from '../events/eventSlice';
+import { format } from 'date-fns';
 
 type Props = {
     profile: Profile
@@ -38,13 +39,13 @@ export default function ProfileEvents({ profile }: Props) {
                     { attribute: 'attendeeIds', operator: 'array-contains', value: profile.id },
                     { attribute: 'date', operator: '<', value: new Date() }
                 ],
-                options.sort = {attribute: 'date', order: 'desc'}
+                    options.sort = { attribute: 'date', order: 'desc' }
                 break;
             case 2: // hosted
                 options.queries = [
-                    { attribute: 'hostUid', operator: '==', value: profile.id}
+                    { attribute: 'hostUid', operator: '==', value: profile.id }
                 ],
-                options.sort = {attribute: 'date', order: 'asc'}
+                    options.sort = { attribute: 'date', order: 'asc' }
                 break;
             default:
                 options = initialOptions
@@ -77,7 +78,7 @@ export default function ProfileEvents({ profile }: Props) {
                                 <Card.Content>
                                     <Card.Header content={event.title} textAlign='center' />
                                     <Card.Meta textAlign='center'>
-                                        <span>{event.date}</span>
+                                        <span>{format(new Date(event.date), 'dd MMM yyyy, h:mm a')}</span>
                                     </Card.Meta>
                                 </Card.Content>
                             </Card>
