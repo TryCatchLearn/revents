@@ -26,7 +26,8 @@ export default function ProfileEvents({ profile }: Props) {
             { attribute: 'attendeeIds', operator: 'array-contains', value: profile.id },
             { attribute: 'date', operator: '>=', value: new Date() }
         ],
-        sort: { attribute: 'date', order: 'asc' }
+        sort: { attribute: 'date', order: 'asc' },
+        reset: true
     }
 
     const [options, setOptions] = useState<CollectionOptions>(initialOptions);
@@ -40,15 +41,18 @@ export default function ProfileEvents({ profile }: Props) {
                     { attribute: 'date', operator: '<', value: new Date() }
                 ],
                     options.sort = { attribute: 'date', order: 'desc' }
+                    options.reset = true;
                 break;
             case 2: // hosted
                 options.queries = [
                     { attribute: 'hostUid', operator: '==', value: profile.id }
                 ],
                     options.sort = { attribute: 'date', order: 'asc' }
+                    options.reset = true;
                 break;
             default:
                 options = initialOptions
+                options.reset = true;
                 break;
         }
         setOptions(options);
